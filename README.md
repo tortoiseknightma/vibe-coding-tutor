@@ -36,6 +36,44 @@ skill_install vibe-coding-tutor
 cp SKILL.md ~/.hermes/skills/software-development/vibe-coding-tutor/
 ```
 
+#### For Claude Code
+
+Two options — project-level or global:
+
+**Option A: Project-level (recommended)**
+```bash
+# Copy CLAUDE.md to your project root
+cp claude-code/CLAUDE.md /path/to/your/project/CLAUDE.md
+
+# Or append to existing CLAUDE.md
+cat claude-code/CLAUDE.md >> /path/to/your/project/CLAUDE.md
+```
+
+**Option B: Global (all projects)**
+```bash
+# Add to global Claude Code instructions
+cp claude-code/CLAUDE.md ~/.claude/CLAUDE.md
+
+# Or append to existing
+cat claude-code/CLAUDE.md >> ~/.claude/CLAUDE.md
+```
+
+**Option C: Slash command (on-demand)**
+```bash
+# Copy the /tutor slash command
+mkdir -p /path/to/your/project/.claude/commands
+cp .claude/commands/tutor.md /path/to/your/project/.claude/commands/tutor.md
+
+# Then in Claude Code, type: /tutor
+```
+
+#### For Cursor
+
+```bash
+# Copy to Cursor rules
+cp SKILL.md /path/to/your/project/.cursor/rules/vibe-coding-tutor.md
+```
+
 #### For Other Agents
 
 Copy `SKILL.md` into your agent's skill/plugin directory. The skill is agent-agnostic — it's a structured prompt that works with any LLM-powered coding agent.
@@ -122,6 +160,44 @@ skill_install vibe-coding-tutor
 cp SKILL.md ~/.hermes/skills/software-development/vibe-coding-tutor/
 ```
 
+#### Claude Code
+
+三种方式——项目级或全局：
+
+**方式 A：项目级（推荐）**
+```bash
+# 复制 CLAUDE.md 到项目根目录
+cp claude-code/CLAUDE.md /你的项目路径/CLAUDE.md
+
+# 或追加到已有的 CLAUDE.md
+cat claude-code/CLAUDE.md >> /你的项目路径/CLAUDE.md
+```
+
+**方式 B：全局生效（所有项目）**
+```bash
+# 添加到 Claude Code 全局指令
+cp claude-code/CLAUDE.md ~/.claude/CLAUDE.md
+
+# 或追加到已有的全局配置
+cat claude-code/CLAUDE.md >> ~/.claude/CLAUDE.md
+```
+
+**方式 C：斜杠命令（按需触发）**
+```bash
+# 复制 /tutor 斜杠命令
+mkdir -p /你的项目路径/.claude/commands
+cp .claude/commands/tutor.md /你的项目路径/.claude/commands/tutor.md
+
+# 然后在 Claude Code 中输入: /tutor
+```
+
+#### Cursor
+
+```bash
+# 复制到 Cursor 规则目录
+cp SKILL.md /你的项目路径/.cursor/rules/vibe-coding-tutor.md
+```
+
 #### 其他 Agent
 
 将 `SKILL.md` 复制到你所用 Agent 的 skill/plugin 目录即可。该 skill 与 Agent 无关——它是一个结构化的 prompt，适用于任何 LLM 驱动的编程 Agent。
@@ -156,25 +232,29 @@ MIT — 详见 [LICENSE](LICENSE)。
 
 ```
 vibe-coding-tutor/
-├── SKILL.md              # The skill definition (core)
-├── README.md             # This file
-├── LICENSE               # MIT license
-├── examples/             # Example tutorial outputs
+├── SKILL.md                  # Core skill definition (agent-agnostic)
+├── README.md                 # This file (bilingual)
+├── LICENSE                   # MIT license
+├── CONTRIBUTING.md           # Contribution guidelines
+├── claude-code/
+│   └── CLAUDE.md             # Claude Code instructions (project/global)
+├── .claude/commands/
+│   └── tutor.md              # Claude Code /tutor slash command
+├── examples/                 # Example tutorial outputs
 │   └── react-todo-app.md
-├── templates/            # Optional: custom tutorial templates
-│   └── tutorial-template.md
-└── CONTRIBUTING.md       # Contribution guidelines
+└── templates/                # Custom tutorial templates
+    └── tutorial-template.md
 ```
 
 ## Compatible Agents
 
-| Agent | Status | Notes |
-|-------|--------|-------|
-| Hermes | ✅ Native | Primary target |
-| Cursor | ✅ | Copy SKILL.md to .cursor/rules/ |
-| Claude Code | ✅ | Use as CLAUDE.md reference |
-| Copilot | ⚠️ Partial | Works as custom instructions |
-| Generic LLM | ✅ | Paste SKILL.md as system prompt |
+| Agent | Status | Installation | Trigger |
+|-------|--------|-------------|---------|
+| Hermes | ✅ Native | `skill_install vibe-coding-tutor` | Auto after coding |
+| Claude Code | ✅ Full | Copy `claude-code/CLAUDE.md` or use `/tutor` | Auto or `/tutor` |
+| Cursor | ✅ | Copy `SKILL.md` to `.cursor/rules/` | Auto after coding |
+| Copilot | ⚠️ Partial | Works as custom instructions | Manual |
+| Generic LLM | ✅ | Paste `SKILL.md` as system prompt | Manual |
 
 ## Tags
 
